@@ -10,6 +10,8 @@ script:
   - swift test
 
 before_install:
+  - sudo apt-get update
+  - sudo apt-get -q install -y make libc6-dev clang-3.9 curl libedit-dev libpython2.7 libicu-dev libssl-dev libxml2 tzdata git libcurl4-openssl-dev  pkg-config
   - chmod ugo+x ./install.sh
   - . ./install.sh
   - git clone https://github.com/apple/sourcekit-lsp

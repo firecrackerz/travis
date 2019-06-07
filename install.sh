@@ -1,9 +1,5 @@
 #!/bin/bash
 
-apt-get -q update 
-apt-get -q install -y make libc6-dev clang-3.9 curl libedit-dev libpython2.7 libicu-dev libssl-dev libxml2 tzdata git libcurl4-openssl-dev  pkg-config
-
-
 DIR="$(pwd)"
 	cd ..
 	export SWIFT_PLATFORM=ubuntu18.04
