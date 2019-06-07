@@ -1,11 +1,16 @@
-os:
-  - linux
-language: generic
-sudo: true
-dist: bionic
-install:
-  - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+matrix:
+include:
+  - os: linux
+    dist: bionic
+    sudo: true
+    language: cpp
+
 script:
-  - swiftenv which swift
+  - swift build
+  - swift test
+
+before_install:
+  - chmod ugo+x ./install.sh
+  - . ./install.sh
   - git clone https://github.com/apple/sourcekit-lsp
-  - cd sourcekit-lsp && swift build -Xcxx -I$(swiftenv which swift | tr -d .)
+  - cd sourcekit-lsp && swift build
