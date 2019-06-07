@@ -6,5 +6,6 @@ dist: bionic
 install:
   - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
 script:
+  - swiftenv which swift
   - git clone https://github.com/apple/sourcekit-lsp
   - cd sourcekit-lsp && swift build -Xcxx -I$(swiftenv which swift | tr -d .)
