@@ -4,29 +4,7 @@ language: generic
 sudo: true
 dist: bionic
 install:
-  - sudo apt-get -q update && \
-    apt-get -q install -y \
-    make \
-    libc6-dev \
-    clang-3.9 \
-    curl \
-    libedit-dev \
-    libpython2.7 \
-    libicu-dev \
-    libssl-dev \
-    libxml2 \
-    tzdata \
-    git \
-    libcurl4-openssl-dev \
-    pkg-config \
-    && update-alternatives --quiet --install /usr/bin/clang clang /usr/bin/clang-3.9 100 \
-    && update-alternatives --quiet --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.9 100 
-  - SWIFT_URL=https://swift.org/builds/$SWIFT_BRANCH/$(echo "$SWIFT_PLATFORM" | tr -d .)/$SWIFT_VERSION/$SWIFT_VERSION-$SWIFT_PLATFORM.tar.gz \
-    && curl -fSsL $SWIFT_URL -o swift.tar.gz \
-    && export GNUPGHOME="$(mktemp -d)" \
-    && tar -xzf swift.tar.gz --directory / --strip-components=1 \
-    && rm -r "$GNUPGHOME" swift.tar.gz \
-    && chmod -R o+r /usr/lib/swift
+  - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
 script:
   - git clone https://github.com/apple/sourcekit-lsp .
-  - swift build -Xcxx -I/usr/lib/swift
+  - swift build -Xcxx -I$(swiftenv which swift | tr -d .)
