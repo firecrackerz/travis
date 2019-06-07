@@ -1,11 +1,10 @@
 os:
   - linux
 language: generic
-sudo: required
+sudo: true
 dist: bionic
-osx_image: xcode7.2
 install:
-  - apt-get -q update && \
+  - sudo apt-get -q update && \
     apt-get -q install -y \
     make \
     libc6-dev \
